@@ -1,0 +1,26 @@
+# ;write your function sum below
+sum:
+	stw		r4, -36(sp)		#--> address for each element
+	stw		r5, -32(sp)		#--> number of elements
+	stw		r6,	-28(sp)		#--> sum
+	stw		r7, -24(sp)		#--> access the value at memory r4
+	
+	movia	r4, 8(sp)		#loading the address of array from stack onto r4
+	ldw		r5,	4(sp)		#loading the # of elements of an array from stack onto r5
+	mult    r5, r5, 4		# multiplying the # of elements by their size (word or 4 bytes) 
+	add		r5, r5, r4		#--> act as max # of times to repeat 
+	
+
+loop:
+	ldw		r7, 0(r4)		#load the value from memory address r4 into r7
+	add		r6, r6, r7
+	addi	r4, r4, 4
+	bleu	r4, r5, loop
+	
+	stw 	r7, (sp)
+	
+	ldw		r4, -36(sp)		
+	ldw		r5, -32(sp)		
+	ldw		r6,	-28(sp)		
+	ldw		r7, -24(sp)		
+	ret

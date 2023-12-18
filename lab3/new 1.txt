@@ -1,0 +1,28 @@
+//find max
+int max = 0;
+n[]= {1,2,3,4};
+
+for(int i= 0; i < n.length(); i++){
+	if(max < n[i] ){
+	max = n[i];
+	}
+}
+
+
+	r1 = 1
+//for loop 3
+main loop(n < 3){
+r2 = array3[n]
+	inner loop (n < 32){
+
+	and r3, r1, r2
+	beq r3, 1, count_1s_Sum
+back:
+	roli r1, r1, 1
+	roli r2, r2, 1
+	br innerloop
+	
+count_1s_Sum:
+	addi count, 1
+	br back
+	

@@ -1,0 +1,29 @@
+# ;write your function compare below
+compare:
+	stw 		ra, -4(sp)
+	stw			r8, -8(sp)		#array2
+	stw			r9,	-12(sp)		#array1
+	
+	call sum
+	ldw		r8, (sp)
+	
+	addi 	sp, sp, 8
+	ldw		r3, (sp) 			#this is storing a preexisting value at that location
+	call sum
+	ldw		r9, (sp)
+	stw 	r3, (sp)			#restoring the value that was initially in stack
+	subi	sp, sp, 8			#stack pointing at the return slot value
+	
+	bleu	r9, r8, if			#;compare  if (r9) sumAr1 <=  (r8)sumAr2
+	stw		0, (sp)
+	ldw 	ra, -4(sp)
+	ldw		r8, -8(sp)		#array2
+	ldw		r9,	-12(sp)		#array1
+	ret
+ 
+ if:
+	stw 	1, (sp)
+	ldw 	ra, -4(sp)
+	ldw		r8, -8(sp)		#array2
+	ldw		r9,	-12(sp)		#array1
+	ret
